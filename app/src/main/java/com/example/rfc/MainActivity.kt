@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
-import java.util.*
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,18 +16,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun generarRFC() {
-        var txtApePat = findViewById<EditText>(R.id.apePat)
-        var txtApeMat = findViewById<EditText>(R.id.apeMat)
-        
-        findViewById<Button>(R.id.btnGenerar).setOnClickListener(){
+        var botonGenerar = findViewById<Button>(R.id.btnGenerar)
+        botonGenerar.setOnClickListener{
             var txtNombre = findViewById<EditText>(R.id.Name)
-            var texto = txtNombre.text.toString()
-            if (texto==""){
-                Toast.makeText(this, "Proporsione un nombre", Toast.LENGTH_LONG).show()
+            var txtApePat = findViewById<EditText>(R.id.apePat)
+            var txtApeMat = findViewById<EditText>(R.id.apeMat)
+
+
+            var nombre = txtNombre.text.toString()
+            var apePat = txtApePat.text.toString()
+            var apeMat = txtApeMat.text.toString()
+
+            var txtResultado = findViewById<TextView>(R.id.Resultadorfc)
+
+            /*Condiciones*/
+
+            if (nombre==""){
+                txtResultado.text = "Por favor introducir nombre"
+            } else if(apePat==""){
+                txtResultado.text = "Por favor introducir Apellido Paterno"
+            } else if(apeMat==""){
+
             } else{
-                Toast.makeText(this, txtNombre, Toast.LENGTH_LONG).show()
+                txtResultado.text = "${apePat.toString().substring(0,2)}"+"${apeMat.toString().substring(0,1)}"+"${nombre.toString().substring(0,1)}"
             }
         }
+
+        /*Generacion de Homoclave*/
 
     }
 }
